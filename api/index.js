@@ -1,5 +1,5 @@
-// api/index.js (CommonJS version)
+// api/index.js
+import app from '../app.js';
 import serverless from 'serverless-http';
-import { default as app } from '../server.js';
 
 export const handler = serverless(app);
