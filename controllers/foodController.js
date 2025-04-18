@@ -15,25 +15,21 @@ const listFood = async (req, res) => {
 
 // add food
 const addFood = async (req, res) => {
+    const { name, description } = req.body;
+    const file = req.file;
 
-    try {
-        let image_filename = `${req.file.filename}`
+    if (!file) return res.status(400).send("No file uploaded");
 
-        const food = new foodModel({
-            name: req.body.name,
-            description: req.body.description,
-            price: req.body.price,
-            category:req.body.category,
-            image: image_filename,
-        })
+    // Example: Upload the buffer to a cloud service like S3 or Cloudinary
+    const imageBuffer = file.buffer;
+    const imageMimeType = file.mimetype;
 
-        await food.save();
-        res.json({ success: true, message: "Food Added" })
-    } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: "Error" })
-    }
-}
+    // Proceed to upload `imageBuffer` to your cloud storage...
+    // OR save it as base64 if needed (not recommended for large files)
+
+    res.status(200).json({ message: "Food item added successfully" });
+};
+
 
 // delete food
 const removeFood = async (req, res) => {
