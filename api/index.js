@@ -1,11 +1,5 @@
-// api/index.js
-const express = require('express');
-const serverless = require('serverless-http');
-const app = express();
+// api/index.js (CommonJS version)
+import serverless from 'serverless-http';
+import { default as app } from '../server.js';
 
-// Define routes
-app.get('/api/hello', (req, res) => {
-  res.send('Hello from Express on Vercel!');
-});
-
-module.exports.handler = serverless(app);
+export const handler = serverless(app);
