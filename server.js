@@ -23,9 +23,14 @@ app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 app.use("/images", express.static("uploads"));
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Food Delivery Backend API 🎉");
+});
+
 app.get("/api", (req, res) => {
   res.send("API Working from Render!");
 });
+
 
 // Start the server on the port provided by Render
 const PORT = process.env.PORT || 5000;
